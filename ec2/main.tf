@@ -3,8 +3,9 @@ resource "aws_instance" "tf_ubuntu_instance" {
   key_name               = var.key_pair_name
   security_groups        = var.security_groups
   vpc_security_group_ids = var.vpc_security_group_ids
-  count                  = var.instance_define.quantity
+  count                  = var.instance_count_and_tag_names.count
+  instance_type          = var.instance_type
   tags = {
-    "Name" = var.instance_define.tag_names[count.index]
+    "Name" = var.instance_count_and_tag_names.tag_names[count.index]
   }
 }

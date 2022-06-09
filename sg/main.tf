@@ -3,6 +3,7 @@ resource "aws_security_group" "tf_public_sg" {
   description = "Security group public"
   tags = {
     "Name" = var.tf_public_sg_tag_name
+    "Role" = "public"
   }
 }
 
@@ -11,5 +12,6 @@ resource "aws_security_group" "tf_private_sg" {
   description = "Security group private"
   tags = {
     "Name" = var.tf_private_sg_tag_name
+    "Role" = "private"
   }
 }

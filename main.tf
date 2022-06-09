@@ -18,10 +18,25 @@ provider "aws" {
 
 
 locals {
-  instance_quantity = 1
-  instance_names    = ["Test"]
+  instance_count     = 1
+  instance_tag_names = ["Terraform"]
+}
+
+module "key_pair" {
+  source = "./key_pair"
+}
+
+module "sg" {
+  source = "./sg"
 }
 
 module "ec2" {
-  source = "./ec2"
+  source                 = "./ec2"
+  key_pair_name          = module.key_pair.key_pair_name
+  security_groups        = [module.sg.tf_public_sg.name]
+  vpc_security_group_ids = [module.sg.tf_public_sg.id]
+  instance_count_and_tag_names = {
+    count     = local.instance_count
+    tag_names = local.instance_tag_names
+  }
 }

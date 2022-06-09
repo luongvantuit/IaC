@@ -18,13 +18,25 @@ variable "vpc_security_group_ids" {
   description = "List of security group ids"
 }
 
-variable "instance_define" {
+variable "instance_count_and_tag_names" {
   type = object({
-    quantity  = number
+    count     = number
     tag_names = list(string)
   })
   default = {
-    quantity  = 1
+    count     = 1
     tag_names = ["Terraform"]
   }
+
+  description = "Setup quantity of instance and tag names for that"
+  validation {
+    condition     = length(var.instance_count_and_tag_names.tag_names) == var.instance_count_and_tag_names.count
+    error_message = "Error set tag names of instance & quantity instance"
+  }
+}
+
+variable "instance_type" {
+  type        = string
+  default     = "c6g.medium"
+  description = "Set instance type of ec instance"
 }
