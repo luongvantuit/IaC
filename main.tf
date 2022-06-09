@@ -15,3 +15,13 @@ provider "aws" {
   profile = "default"
   region  = "ap-southeast-1"
 }
+
+
+locals {
+  instance_quantity = 1
+  instance_names    = ["Test"]
+}
+
+module "ec2" {
+  source = "./ec2"
+}

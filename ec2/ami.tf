@@ -1,6 +1,6 @@
 # AMI OS Ubuntu architecture ARM64
-data "aws_ami" "tf_aws_ami" {
-  owners      = var.aws_ami_owners
+data "aws_ami" "tf_ami_ubuntu" {
+  owners      = ["099720109477"]
   most_recent = true
 
   filter {
