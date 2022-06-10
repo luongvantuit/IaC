@@ -27,7 +27,18 @@ module "key_pair" {
 }
 
 module "sg" {
-  source = "./sg"
+  source    = "./sg"
+  tf_vpc_id = module.vpc.vpc_id
+}
+
+module "vpc" {
+  source           = "./vpc"
+  ec2_instance_ids = module.ec2.tf_ubuntu_instance_ids
+}
+
+module "s3" {
+  source = "./s3"
+  ec2_instance_public_ips = module.ec2.tf_ubuntu_instance_public_ips
 }
 
 module "ec2" {

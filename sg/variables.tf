@@ -17,3 +17,8 @@ variable "tf_private_sg_tag_name" {
   type    = string
   default = "Terraform private security group"
 }
+
+
+variable "tf_vpc_id" {
+  type = string
+}
