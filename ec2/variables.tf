@@ -35,7 +35,7 @@ variable "instance_count_and_tag_names" {
   }
 }
 
-variable "instance_type" {
+variable "instance_type_ubuntu" {
   type        = string
   default     = "c6g.medium"
   description = "Set instance type of ec instance"
@@ -51,4 +51,30 @@ variable "instance_type" {
     "r6gd.4xlarge", "r6gd.8xlarge", "r6gd.12xlarge", "r6gd.16xlarge", "r6gd.metal", "t4g.nano", "t4g.micro", "t4g.small", "t4g.medium", "t4g.large", "t4g.xlarge", "t4g.2xlarge"], var.instance_type)
     error_message = "Instance type is not supported for architecture ARM64"
   }
+}
+
+variable "instance_type_linux" {
+  type    = string
+  default = "t2.micro"
+}
+
+variable "lifecycle_create_before_destroy" {
+  type    = bool
+  default = true
+}
+
+variable "os" {
+  type    = string
+  default = "linux"
+  validation {
+    condition     = contains(["linux", "ubuntu"], var.os)
+    error_message = "Please config os is linux or ubuntu"
+  }
+  description = "OS of instances"
+}
+
+variable "architecture" {
+  type        = string
+  default     = "arm64"
+  description = "Architecture of instances"
 }

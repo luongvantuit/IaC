@@ -5,7 +5,7 @@ data "aws_ami" "tf_ami_ubuntu" {
 
   filter {
     name   = "architecture"
-    values = ["arm64"]
+    values = [var.architecture]
   }
 
   filter {
@@ -22,4 +22,9 @@ data "aws_ami" "tf_ami_ubuntu" {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-*-22.04-arm64-server-*"]
   }
+}
+
+
+data "aws_ami" "tf_ami_linux" {
+
 }

@@ -41,6 +41,10 @@ module "s3" {
   ec2_instance_public_ips = module.ec2.tf_ubuntu_instance_public_ips
 }
 
+module "cognito" {
+  source = "./cognito"
+}
+
 module "ec2" {
   source                 = "./ec2"
   key_pair_name          = module.key_pair.key_pair_name
