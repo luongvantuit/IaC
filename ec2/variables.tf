@@ -35,7 +35,7 @@ variable "instance_count_and_tag_names" {
   }
 }
 
-variable "instance_type_ubuntu" {
+variable "instance_type_arm64" {
   type        = string
   default     = "c6g.medium"
   description = "Set instance type of ec instance"
@@ -48,12 +48,12 @@ variable "instance_type_ubuntu" {
       "m6g.4xlarge", "m6g.8xlarge", "m6g.12xlarge", "m6g.16xlarge", "m6g.metal", "m6g.medium", "m6g.large", "m6g.xlarge", "m6g.2xlarge",
       "m6gd.4xlarge", "m6gd.8xlarge", "m6gd.12xlarge", "m6gd.16xlarge", "m6gd.metal", "r6g.medium", "r6g.large", "r6g.xlarge", "r6g.2xlarge",
       "r6g.4xlarge", "r6g.8xlarge", "r6g.12xlarge", "r6g.16xlarge", "r6g.metal", "r6gd.medium", "r6gd.large", "r6gd.xlarge", "r6gd.2xlarge",
-    "r6gd.4xlarge", "r6gd.8xlarge", "r6gd.12xlarge", "r6gd.16xlarge", "r6gd.metal", "t4g.nano", "t4g.micro", "t4g.small", "t4g.medium", "t4g.large", "t4g.xlarge", "t4g.2xlarge"], var.instance_type)
+    "r6gd.4xlarge", "r6gd.8xlarge", "r6gd.12xlarge", "r6gd.16xlarge", "r6gd.metal", "t4g.nano", "t4g.micro", "t4g.small", "t4g.medium", "t4g.large", "t4g.xlarge", "t4g.2xlarge"], var.instance_type_arm64)
     error_message = "Instance type is not supported for architecture ARM64"
   }
 }
 
-variable "instance_type_linux" {
+variable "instance_type_x86_64" {
   type    = string
   default = "t2.micro"
 }
@@ -77,4 +77,8 @@ variable "architecture" {
   type        = string
   default     = "arm64"
   description = "Architecture of instances"
+  validation {
+    condition     = contains(["arm64", "x86_64"], var.architecture)
+    error_message = "Architecture is not supported for architecture ${var.architecture}"
+  }
 }
