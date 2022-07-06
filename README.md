@@ -9,3 +9,12 @@
 | vpc        | Terraform AWS VPC                                   |
 | cognito    | Terraform Cognito configuration                     |
 | s3-backend | Terraform config S3 backend for project             |
+
+## Design System Diagram
+
+<img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-system.png" width="100%"/>
+
+## Design Infrastructure
+
+<img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-infrastructure.png" width="100%"/>
+
