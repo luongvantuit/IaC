@@ -16,7 +16,7 @@
 
 ## Design Backend Remote & S3
 
-<img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-system.png" width="100%"/>
+<img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-backend.png" width="100%"/>
 
 ## Design Infrastructure
 
