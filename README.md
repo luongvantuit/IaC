@@ -14,7 +14,10 @@
 
 <img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-system.png" width="100%"/>
 
+## Design Backend Remote & S3
+
+<img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-system.png" width="100%"/>
+
 ## Design Infrastructure
 
 <img src="https://raw.githubusercontent.com/luongvantuit/IaC/master/diagram-infrastructure.png" width="100%"/>
-
