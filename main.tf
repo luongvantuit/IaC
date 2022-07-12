@@ -26,6 +26,11 @@ provider "aws" {
 
 
 locals {
+  
+}
+
+
+locals {
   instance_count     = 1
   instance_tag_names = ["Terraform"]
 }
@@ -41,23 +46,23 @@ module "sg" {
 
 module "vpc" {
   source           = "./vpc"
-  ec2_instance_ids = module.ec2.tf_instance_public_ips
+  ec2_instance_ids = module.ec2.tf_instance_ids
 }
 
-# module "s3" {
-#   source = "./s3"
-#   ec2_instance_public_ips = module.ec2.tf_ubuntu_instance_public_ips
-# }
+module "s3" {
+  source              = "./s3"
+  ec2_instance_ips = module.ec2.tf_instance_ips
+}
 
 # module "cognito" {
 #   source = "./cognito"
 # }
 
 module "ec2" {
-  source        = "./ec2"
-  key_pair_name = module.key_pair.key_pair_name
-  # security_groups        = [module.sg.tf_public_sg.name]
-  # vpc_security_group_ids = [module.sg.tf_public_sg.id]
+  source                 = "./ec2"
+  key_pair_name          = module.key_pair.key_pair_name
+  security_groups        = [module.sg.tf_public_sg.name]
+  vpc_security_group_ids = [module.sg.tf_public_sg.id]
   instance_count_and_tag_names = {
     count     = local.instance_count
     tag_names = local.instance_tag_names

@@ -8,3 +8,9 @@ variable "ec2_instance_ids" {
   type    = list(string)
   default = []
 }
+
+
+variable "internet_gateway_name" {
+  type    = string
+  default = "Terrafrom GW"
+}
