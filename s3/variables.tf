@@ -1,4 +1,4 @@
-variable "ec2_instance_public_ips" {
+variable "ec2_instance_ips" {
   type    = list(string)
   default = []
 }

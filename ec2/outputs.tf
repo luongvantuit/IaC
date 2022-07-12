@@ -1,4 +1,4 @@
-output "tf_instance_public_ips" {
+output "tf_instance_ips" {
   value = [for i in aws_instance.tf_instances : i.public_ip]
 }
 

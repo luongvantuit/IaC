@@ -19,3 +19,14 @@ resource "aws_security_group_rule" "tf_allow_https" {
   security_group_id = aws_security_group.tf_public_sg.id
   protocol          = "tcp"
 }
+
+
+resource "aws_security_group_rule" "tf_allow_connect_rds" {
+  to_port           = 5432
+  from_port         = 5432
+  cidr_blocks       = ["0.0.0.0/0"]
+  ipv6_cidr_blocks  = []
+  type              = "ingress"
+  security_group_id = aws_security_group.tf_rds_sg.id
+  protocol          = "-1"
+}
