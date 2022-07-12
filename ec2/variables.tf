@@ -82,3 +82,8 @@ variable "architecture" {
     error_message = "Architecture is not supported for architecture ${var.architecture}"
   }
 }
+
+
+variable "subnet_ids" {
+  type = list(string)
+}
