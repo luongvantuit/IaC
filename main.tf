@@ -67,27 +67,28 @@ module "s3" {
 
 module "ec2_public" {
   source                 = "./ec2"
-  key_pair_name          = module.key_pair.key_pair_name
-  vpc_security_group_ids = [module.sg.tf_public_sg.id]
-  subnet_ids             = module.vpc.subnet_public_ids
-  instance_count_and_tag_names = {
+  tf_key_pair_name          = module.key_pair.key_pair_name
+  tf_vpc_security_group_ids = [module.sg.tf_public_sg.id]
+  tf_subnet_ids             = module.vpc.subnet_public_ids
+  tf_instance_count_and_tag_names = {
     count     = local.instance_public_count
     tag_names = local.instance_public_tag_names
   }
-  os           = "linux"
-  architecture = "x86_64"
+
+  tf_os           = "linux"
+  tf_architecture = "x86_64"
 }
 module "ec2_private" {
   source                 = "./ec2"
-  key_pair_name          = module.key_pair.key_pair_name
-  vpc_security_group_ids = [module.sg.tf_private_sg.id]
-  subnet_ids             = module.vpc.subnet_private_ids
-  instance_count_and_tag_names = {
+  tf_key_pair_name          = module.key_pair.key_pair_name
+  tf_vpc_security_group_ids = [module.sg.tf_private_sg.id]
+  tf_subnet_ids             = module.vpc.subnet_private_ids
+  tf_instance_count_and_tag_names = {
     count     = local.instance_private_count
     tag_names = local.instance_private_tag_names
   }
-  os           = "linux"
-  architecture = "x86_64"
+  tf_os           = "linux"
+  tf_architecture = "x86_64"
 }
 
 module "rds" {

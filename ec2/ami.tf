@@ -4,7 +4,7 @@ data "aws_ami" "tf_ami_ubuntu" {
 
   filter {
     name   = "architecture"
-    values = [var.architecture]
+    values = [var.tf_architecture]
   }
 
   filter {
@@ -25,7 +25,7 @@ data "aws_ami" "tf_ami_linux" {
 
   filter {
     name   = "architecture"
-    values = [var.architecture]
+    values = [var.tf_architecture]
   }
 
   filter {

@@ -1,24 +1,24 @@
-variable "key_pair_name" {
+variable "tf_key_pair_name" {
   type        = string
   description = "File name of the key pair SSH"
   default     = "key_pair"
 }
 
 # List of name security groups
-variable "security_groups" {
+variable "tf_security_groups" {
   type        = list(string)
   default     = []
   description = "List of name security groups"
 }
 
 # List of security group ids
-variable "vpc_security_group_ids" {
+variable "tf_vpc_security_group_ids" {
   type        = list(string)
   default     = []
   description = "List of security group ids"
 }
 
-variable "instance_count_and_tag_names" {
+variable "tf_instance_count_and_tag_names" {
   type = object({
     count     = number
     tag_names = list(string)
@@ -30,12 +30,12 @@ variable "instance_count_and_tag_names" {
 
   description = "Setup quantity of instance and tag names for that"
   validation {
-    condition     = length(var.instance_count_and_tag_names.tag_names) == var.instance_count_and_tag_names.count
+    condition     = length(var.tf_instance_count_and_tag_names.tag_names) == var.tf_instance_count_and_tag_names.count
     error_message = "Error set tag names of instance & quantity instance"
   }
 }
 
-variable "instance_type_arm64" {
+variable "tf_instance_type_arm64" {
   type        = string
   default     = "c6g.medium"
   description = "Set instance type of ec instance"
@@ -48,42 +48,36 @@ variable "instance_type_arm64" {
       "m6g.4xlarge", "m6g.8xlarge", "m6g.12xlarge", "m6g.16xlarge", "m6g.metal", "m6g.medium", "m6g.large", "m6g.xlarge", "m6g.2xlarge",
       "m6gd.4xlarge", "m6gd.8xlarge", "m6gd.12xlarge", "m6gd.16xlarge", "m6gd.metal", "r6g.medium", "r6g.large", "r6g.xlarge", "r6g.2xlarge",
       "r6g.4xlarge", "r6g.8xlarge", "r6g.12xlarge", "r6g.16xlarge", "r6g.metal", "r6gd.medium", "r6gd.large", "r6gd.xlarge", "r6gd.2xlarge",
-    "r6gd.4xlarge", "r6gd.8xlarge", "r6gd.12xlarge", "r6gd.16xlarge", "r6gd.metal", "t4g.nano", "t4g.micro", "t4g.small", "t4g.medium", "t4g.large", "t4g.xlarge", "t4g.2xlarge"], var.instance_type_arm64)
+    "r6gd.4xlarge", "r6gd.8xlarge", "r6gd.12xlarge", "r6gd.16xlarge", "r6gd.metal", "t4g.nano", "t4g.micro", "t4g.small", "t4g.medium", "t4g.large", "t4g.xlarge", "t4g.2xlarge"], var.tf_instance_type_arm64)
     error_message = "Instance type is not supported for architecture ARM64"
   }
 }
 
-variable "instance_type_x86_64" {
+variable "tf_instance_type_x86_64" {
   type    = string
   default = "t2.micro"
 }
 
-variable "lifecycle_create_before_destroy" {
-  type    = bool
-  default = true
-}
-
-variable "os" {
+variable "tf_os" {
   type    = string
   default = "linux"
   validation {
-    condition     = contains(["linux", "ubuntu"], var.os)
+    condition     = contains(["linux", "ubuntu"], var.tf_os)
     error_message = "Please config os is linux or ubuntu"
   }
   description = "OS of instances"
 }
 
-variable "architecture" {
+variable "tf_architecture" {
   type        = string
   default     = "arm64"
   description = "Architecture of instances"
   validation {
-    condition     = contains(["arm64", "x86_64"], var.architecture)
-    error_message = "Architecture is not supported for architecture ${var.architecture}"
+    condition     = contains(["arm64", "x86_64"], var.tf_architecture)
+    error_message = "Architecture is not supported for architecture ${var.tf_architecture}"
   }
 }
 
-
-variable "subnet_ids" {
+variable "tf_subnet_ids" {
   type = list(string)
 }
