@@ -1,14 +1,14 @@
-output "tf_public_sg" {
+output "tf_lb_sg" {
   value = {
-    id   = aws_security_group.tf_public_sg.id
-    name = aws_security_group.tf_public_sg.name
+    id   = aws_security_group.tf_lb_sg.id
+    name = aws_security_group.tf_lb_sg.name
   }
 }
 
-output "tf_private_sg" {
+output "tf_ec2_sg" {
   value = {
-    id   = aws_security_group.tf_private_sg.id
-    name = aws_security_group.tf_private_sg.name
+    id   = aws_security_group.tf_ec2_sg.id
+    name = aws_security_group.tf_ec2_sg.name
   }
 }
 

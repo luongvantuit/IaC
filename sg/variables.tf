@@ -1,21 +1,21 @@
-variable "tf_public_sg_name" {
+variable "tf_lb_sg_name" {
   type    = string
-  default = "tf_public_sg"
+  default = "tf_lb_sg"
 }
 
-variable "tf_public_sg_tag_name" {
+variable "tf_lb_sg_tag_name" {
   type    = string
-  default = "Terraform public security group"
+  default = "Terraform load balandcer security group"
 }
 
-variable "tf_private_sg_name" {
+variable "tf_ec2_sg_name" {
   type    = string
-  default = "tf_private_sg"
+  default = "tf_ec2_sg"
 }
 
-variable "tf_private_sg_tag_name" {
+variable "tf_ec2_sg_tag_name" {
   type    = string
-  default = "Terraform private security group"
+  default = "Terraform EC2 security group"
 }
 
 variable "tf_rds_sg_name" {

@@ -5,5 +5,5 @@ resource "aws_security_group_rule" "tf_allow_internet_outside" {
   from_port         = 0
   cidr_blocks       = ["0.0.0.0/0"]
   description       = "Allow internet, enable update, upgrade install packages and interact with service outside"
-  security_group_id = aws_security_group.tf_public_sg.id
+  security_group_id = aws_security_group.tf_ec2_sg.id
 }
