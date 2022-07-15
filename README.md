@@ -10,14 +10,8 @@
 | cognito    | Terraform Cognito configuration                     |
 | s3-backend | Terraform config S3 backend for project             |
 
-## Design System Diagram
-
 <img src="./imgs/diagram-system.png" width="100%"/>
 
-## Design Backend Remote & S3
-
 <img src="./imgs/diagram-backend.png" width="100%"/>
-
-## Design Infrastructure
 
 <img src="./imgs/diagram-infrastructure.png" width="100%"/>
