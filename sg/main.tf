@@ -25,5 +25,6 @@ resource "aws_security_group" "tf_rds_sg" {
   vpc_id      = var.tf_vpc_id
   tags = {
     "Name" = var.tf_rds_sg_tag_name
+    "Role" = "private"
   }
 }

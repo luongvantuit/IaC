@@ -8,16 +8,6 @@ resource "aws_security_group_rule" "tf_lb_allow_http" {
   security_group_id = aws_security_group.tf_lb_sg.id
   protocol          = "tcp"
 }
-resource "aws_security_group_rule" "tf_lb_allow_https" {
-  to_port           = 443
-  from_port         = 443
-  type              = "ingress"
-  cidr_blocks       = ["0.0.0.0/0"]
-  ipv6_cidr_blocks  = []
-  description       = "Allow HTTPS request access on port 443"
-  security_group_id = aws_security_group.tf_lb_sg.id
-  protocol          = "tcp"
-}
 
 resource "aws_security_group_rule" "tf_ec2_allow_http" {
   to_port           = 80
@@ -26,17 +16,6 @@ resource "aws_security_group_rule" "tf_ec2_allow_http" {
   cidr_blocks       = ["0.0.0.0/0"]
   ipv6_cidr_blocks  = []
   description       = "Allow HTTP request access on port 80"
-  security_group_id = aws_security_group.tf_ec2_sg.id
-  protocol          = "tcp"
-}
-
-resource "aws_security_group_rule" "tf_ec2_allow_https" {
-  to_port           = 443
-  from_port         = 443
-  type              = "ingress"
-  cidr_blocks       = ["0.0.0.0/0"]
-  ipv6_cidr_blocks  = []
-  description       = "Allow HTTPS request access on port 443"
   security_group_id = aws_security_group.tf_ec2_sg.id
   protocol          = "tcp"
 }

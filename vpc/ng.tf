@@ -1,4 +1,5 @@
 resource "aws_nat_gateway" "tf_nat_gw" {
+
   depends_on = [
     aws_internet_gateway.tf_internet_gw
   ]
@@ -7,6 +8,6 @@ resource "aws_nat_gateway" "tf_nat_gw" {
   subnet_id     = aws_subnet.tf_subnet_public[0].id
 
   tags = {
-    "Name" = "NAT Gateway"
+    "Name" = var.tf_nat_gateway_tag_name
   }
 }
