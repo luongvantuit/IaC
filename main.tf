@@ -45,7 +45,7 @@ module "sg" {
 
 module "s3" {
   source           = "./s3"
-  ec2_instance_ips = module.ec2.instance_ips
+  ec2_instance_ips = module.ec2.instance_private_ips
 }
 
 module "cognito" {
@@ -77,23 +77,4 @@ module "rds" {
   source                 = "./rds"
   vpc_security_group_ids = [module.sg.rds_sg.id]
   subnet_ids             = module.vpc.subnet_rds_ids
-}
-
-# Create EC2 Remote Config EC2 In VPC Block
-resource "aws_eip" "eip_ec2_remote" {
-  vpc      = true
-  instance = module.ec2_test.instance_ids[0]
-}
-
-module "ec2_remote" {
-  source                 = "./ec2"
-  key_pair_name          = module.key_pair.key_pair_name
-  vpc_security_group_ids = [module.sg.ec2_sg.id]
-  subnet_ids             = module.vpc.subnet_public_ids
-  os                     = "ubuntu"
-  architecture           = "arm64"
-  instance_count_and_tag_names = {
-    count     = 1
-    tag_names = ["EC2 Remote"]
-  }
 }
