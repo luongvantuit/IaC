@@ -1,20 +1,20 @@
-output "tf_lb_sg" {
+output "lb_sg" {
   value = {
-    id   = aws_security_group.tf_lb_sg.id
-    name = aws_security_group.tf_lb_sg.name
+    id   = aws_security_group.lb_sg.id
+    name = aws_security_group.lb_sg.name
   }
 }
 
-output "tf_ec2_sg" {
+output "ec2_sg" {
   value = {
-    id   = aws_security_group.tf_ec2_sg.id
-    name = aws_security_group.tf_ec2_sg.name
+    id   = aws_security_group.ec2_sg.id
+    name = aws_security_group.ec2_sg.name
   }
 }
 
-output "tf_rds_sg" {
+output "rds_sg" {
   value = {
-    id   = aws_security_group.tf_rds_sg.id
-    name = aws_security_group.tf_rds_sg.name
+    id   = aws_security_group.rds_sg.id
+    name = aws_security_group.rds_sg.name
   }
 }

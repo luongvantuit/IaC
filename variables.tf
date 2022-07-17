@@ -1,4 +1,4 @@
-variable "tf_region" {
+variable "region" {
   type    = string
   default = "ap-southeast-1"
 }

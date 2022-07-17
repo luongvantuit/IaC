@@ -1,4 +1,4 @@
-resource "random_password" "tf_random_password" {
+resource "random_password" "random_password" {
   length  = 16
   special = false
 }

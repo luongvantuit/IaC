@@ -1,3 +1,3 @@
-resource "aws_eip" "tf_eip_nat" {
+resource "aws_eip" "eip_nat" {
   vpc = true
 }

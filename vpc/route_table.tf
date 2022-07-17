@@ -1,8 +1,8 @@
-resource "aws_route_table" "tf_route_table_public" {
-  vpc_id = aws_vpc.tf_vpc.id
+resource "aws_route_table" "route_table_public" {
+  vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.tf_internet_gw.id
+    gateway_id = aws_internet_gateway.internet_gw.id
   }
 
   tags = {
@@ -11,11 +11,11 @@ resource "aws_route_table" "tf_route_table_public" {
 }
 
 
-resource "aws_route_table" "tf_route_table_private" {
-  vpc_id = aws_vpc.tf_vpc.id
+resource "aws_route_table" "route_table_private" {
+  vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.tf_nat_gw.id
+    gateway_id = aws_nat_gateway.nat_gw.id
   }
 
   tags = {
@@ -24,11 +24,11 @@ resource "aws_route_table" "tf_route_table_private" {
 }
 
 
-resource "aws_route_table" "tf_route_table_rbs" {
-  vpc_id = aws_vpc.tf_vpc.id
+resource "aws_route_table" "route_table_rbs" {
+  vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.tf_nat_gw.id
+    gateway_id = aws_nat_gateway.nat_gw.id
   }
 
   tags = {

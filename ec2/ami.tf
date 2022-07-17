@@ -1,10 +1,10 @@
-data "aws_ami" "tf_ami_ubuntu" {
+data "aws_ami" "ami_ubuntu" {
   owners      = ["099720109477"]
   most_recent = true
 
   filter {
     name   = "architecture"
-    values = [var.tf_architecture]
+    values = [var.architecture]
   }
 
   filter {
@@ -18,14 +18,14 @@ data "aws_ami" "tf_ami_ubuntu" {
   }
 }
 
-data "aws_ami" "tf_ami_linux" {
+data "aws_ami" "ami_linux" {
 
   owners      = ["137112412989"]
   most_recent = true
 
   filter {
     name   = "architecture"
-    values = [var.tf_architecture]
+    values = [var.architecture]
   }
 
   filter {

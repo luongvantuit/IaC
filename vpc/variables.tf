@@ -1,20 +1,20 @@
-variable "tf_vpc_tag_name" {
+variable "vpc_tag_name" {
   type        = string
   default     = "Terraform VPC"
   description = "Tag name of AWS VPC"
 }
 
-variable "tf_internet_gateway_name" {
+variable "internet_gateway_name" {
   type    = string
-  default = "tf_ig"
+  default = "ig"
 }
 
-variable "tf_nat_gateway_tag_name" {
+variable "nat_gateway_tag_name" {
   type    = string
   default = "NAT Gateway"
 }
 
-variable "tf_subnet_info" {
+variable "subnet_info" {
   type = object({
     cidr_block_public  = list(string)
     cidr_block_private = list(string)
@@ -29,7 +29,7 @@ variable "tf_subnet_info" {
   }
 }
 
-variable "tf_region" {
+variable "region" {
   type    = string
   default = "ap-southeast-1"
 }
