@@ -15,19 +15,12 @@ resource "aws_instance" "instance_remote" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "echo \"--- Apply Updates on Control Node ---\"",
-      "sudo apt update",
-      "sudo apt updgrade -y",
-      "echo \"--- Install dependencies and configure Ansible Repository ---\"",
-      "sudo apt install -y software-properties-common",
-      "sudo add-apt-repository --yes --update ppa:ansible/ansible",
-      "sudo apt update",
-      "echo \"Install latest version of Ansible\"",
-      "sudo apt install ansible -y",
-      "echo \"--- Check verison Ansible ---\"",
-      "ansible --version"
+    scripts = [
+      "${path.cwd}/scripts/update_control_node.sh",
+      "${path.cwd}/scripts/install_ansible.sh",
+      "${path.cwd}/scripts/create_folder_ansible.sh"
     ]
+
     connection {
       host        = self.public_ip
       type        = "ssh"
@@ -35,4 +28,30 @@ resource "aws_instance" "instance_remote" {
       user        = "ubuntu"
     }
   }
+
+  provisioner "remote-exec" {
+    inline = concat([
+      "echo \"--- Copy playbook Ansible ---\"",
+      "echo \"${file("${path.cwd}/ansible/playbook.yml")}\" > \"$HOME/ansible/playbook.yml\"",
+      "echo \"--- Copy Key pem VPC ---",
+      "echo ${module.key_pair.private_key} > $HOME/keys/key_vpc.pem",
+      "chmod 400 $HOME/keys/key_vpc.pem"
+      ],
+      [
+        for ip in module.ec2.instance_private_ips : "ssh-keyscan ${ip} >> ~/.ssh/known_hosts"
+      ],
+      [
+        for ip in module.ec2.instance_private_ips : "ssh -i $HOME/keys/key_vpc.pem ubuntu@${ip} \"sudo apt update;sudo apt upgrade -y;sudo apt install -y software-properties-common;sudo add-apt-repository --yes --update ppa:ansible/ansible;sudo apt install ansible -y\""
+      ],
+      [
+        for ip in module.ec2.instance_private_ips : "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key \"${file("${path.cwd}/${module.key_pair.key_pair_name}.pem")}\" -T 300 -i '${ip},', $HOME/ansible/playbook.yml"
+    ])
+    connection {
+      host        = self.public_ip
+      type        = "ssh"
+      private_key = module.key_pair.private_key
+      user        = "ubuntu"
+    }
+  }
+
 }
