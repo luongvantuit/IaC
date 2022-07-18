@@ -12,5 +12,5 @@
       apt:
         pkg:
           - nginx
-        update_cache: true
+        update_cache: yes
         state: latest
