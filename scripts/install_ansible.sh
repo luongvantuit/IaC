@@ -7,7 +7,7 @@ sudo add-apt-repository --yes --update ppa:ansible/ansible
 
 sudo apt update
 
-echo "Install latest version of Ansible"
+echo "--- Install latest version of Ansible ---"
 
 sudo apt install ansible -y
 

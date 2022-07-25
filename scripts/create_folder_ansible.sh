@@ -6,5 +6,5 @@ echo "--- Ansible folder not exist ---"
 mkdir "$HOME/ansible"
 echo "--- Create folder done ---"
 else 
-echo "--- Ansible folder existed"
+echo "--- Ansible folder existed ---"
 fi
