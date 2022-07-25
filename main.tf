@@ -31,7 +31,7 @@ module "key_pair" {
 module "vpc" {
   source = "./vpc"
   subnet_info = {
-    availability_zone  = data.aws_availability_zones.availability_zones.names
+    availability_zones = data.aws_availability_zones.availability_zones.names
     cidr_block_private = local.cidr_block_ec2
     cidr_block_public  = local.cidr_block_lb
     cidr_block_rds     = local.cidr_block_rds

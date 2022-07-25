@@ -5,7 +5,7 @@ resource "aws_instance" "instances" {
   security_groups        = var.security_groups
   count                  = var.instance_count_and_tag_names.count
   instance_type          = var.architecture == "arm64" ? var.instance_type_arm64 : var.instance_type_x86_64
-  subnet_id              = var.subnet_ids[count.index]
+  subnet_id              = length(var.subnet_ids) == 0 ? null : var.subnet_ids[count.index]
   tags = {
     "Name" = var.instance_count_and_tag_names.tag_names[count.index]
   }

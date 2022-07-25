@@ -5,6 +5,9 @@ resource "aws_eip" "eip_ec2_remote" {
 }
 
 resource "aws_instance" "instance_remote" {
+  depends_on = [
+    module.ec2
+  ]
   ami                    = data.aws_ami.ami_ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [module.sg.ec2_sg.id]

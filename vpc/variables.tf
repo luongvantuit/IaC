@@ -19,10 +19,10 @@ variable "subnet_info" {
     cidr_block_public  = list(string)
     cidr_block_private = list(string)
     cidr_block_rds     = list(string)
-    availability_zone  = list(string)
+    availability_zones = list(string)
   })
   default = {
-    availability_zone  = []
+    availability_zones = []
     cidr_block_private = []
     cidr_block_public  = []
     cidr_block_rds     = []
